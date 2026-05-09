@@ -44,7 +44,7 @@ remarks:""
 });
 
 useEffect(()=>{
-await fetchInventory();
+fetchInventory();
 },[]);
   
 async function saveInventory(){
