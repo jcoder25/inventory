@@ -55,9 +55,12 @@ return;
 const payload = {
 id:Date.now(),
 ...inventoryForm,
-balance:
+balance: Number(
+(
 Number(inventoryForm.incoming) -
 Number(inventoryForm.outgoing)
+).toFixed(2)
+)
 };
 
 setInventory([...inventory,payload]);
