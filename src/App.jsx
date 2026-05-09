@@ -78,8 +78,21 @@ item.id === editingId
 
 }else{
 
+if(editingId){
+
+setInventory(
+inventory.map(item =>
+item.id === editingId
+? { ...payload, id: editingId }
+: item
+)
+);
+
+}else{
+
 setInventory([...inventory,payload]);
 
+}
 }
 
 setInventoryForm({
@@ -95,6 +108,7 @@ remarks:""
 
 setError("");
 setShowInventory(false);
+setEditingId(null);
 }
 
 function editInventory(item)
@@ -157,6 +171,7 @@ inventory.filter(i=>i.id !== id)
 )
 }
 onAdd={()=>setShowInventory(true)}
+onEdit={editInventory}
 />
 }
 />
