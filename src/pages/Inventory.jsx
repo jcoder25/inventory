@@ -1,3 +1,4 @@
+import { useState } from "react";
 
 export default function Inventory({
 inventory,
@@ -5,7 +6,23 @@ onDelete,
 onAdd,
 onEdit
 }){
+  
+const [search,setSearch] = useState("");
 
+const filteredInventory = inventory.filter(item => {
+
+const query = search.toLowerCase();
+
+return (
+item.material?.toLowerCase().includes(query) ||
+String(item.rollNo).includes(query) ||
+String(item.size).includes(query) ||
+String(item.gramage).includes(query)
+);
+
+});
+
+  
 return(
 <div className="card">
 
@@ -27,6 +44,27 @@ Add Inventory
 
 </div>
 
+<div className="search-bar-wrapper">
+
+<input
+type="text"
+placeholder="Search material, roll no, size..."
+value={search}
+onChange={(e)=>setSearch(e.target.value)}
+className="search-input"
+/>
+
+{search && (
+<button
+className="clear-search"
+onClick={()=>setSearch("")}
+>
+×
+</button>
+)}
+
+</div>
+  
 <table>
 
 <thead>
