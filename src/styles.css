@@ -165,7 +165,15 @@ max-width:100%;
 font-size:14px;
 padding:12px 42px 12px 14px;
 }
+th{
+cursor:pointer;
+user-select:none;
+transition:0.2s;
+}
 
+th:hover{
+color:#f4b400;
+}
 
   
 }
