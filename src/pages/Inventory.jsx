@@ -12,6 +12,24 @@ const [search,setSearch] = useState("");
 const [sortField,setSortField] = useState("");
 const [sortOrder,setSortOrder] = useState("asc");
 
+
+function handleSort(field){
+
+if(sortField === field){
+
+setSortOrder(prev =>
+prev === "asc" ? "desc" : "asc"
+);
+
+}else{
+
+setSortField(field);
+setSortOrder("asc");
+
+}
+
+}
+
 const filteredInventory = [...inventory]
 
 .filter(item => {
@@ -19,10 +37,26 @@ const filteredInventory = [...inventory]
 const query = search.toLowerCase();
 
 return (
-item.material?.toLowerCase().includes(query) ||
-String(item.rollNo).includes(query) ||
-String(item.size).includes(query) ||
-String(item.gramage).includes(query)
+
+String(item.material || "")
+.toLowerCase()
+.includes(query)
+
+||
+
+String(item.rollNo || "")
+.includes(query)
+
+||
+
+String(item.size || "")
+.includes(query)
+
+||
+
+String(item.gramage || "")
+.includes(query)
+
 );
 
 })
@@ -34,11 +68,6 @@ if(!sortField) return 0;
 let valA = a[sortField];
 let valB = b[sortField];
 
-if(sortField === "date"){
-valA = new Date(valA);
-valB = new Date(valB);
-}
-
 const numericFields = [
 "size",
 "gramage",
@@ -49,18 +78,24 @@ const numericFields = [
 ];
 
 if(sortField === "date"){
+
 valA = new Date(valA);
 valB = new Date(valB);
+
 }
 
 else if(numericFields.includes(sortField)){
+
 valA = Number(valA);
 valB = Number(valB);
+
 }
 
 else{
+
 valA = String(valA).toLowerCase();
 valB = String(valB).toLowerCase();
+
 }
 
 if(valA < valB){
@@ -75,24 +110,6 @@ return 0;
 
 });
 
-function handleSort(field){
-
-if(sortField === field){
-
-setSortOrder(
-sortOrder === "asc"
-? "desc"
-: "asc"
-);
-
-}else{
-
-setSortField(field);
-setSortOrder("asc");
-
-}
-
-}
   
 return(
 <div className="card">
@@ -148,51 +165,51 @@ sortOrder==="asc" ? " ↑" : " ↓"
 )}
 </th>
   
-<th onClick={()=>handleSort("Size")}>
+<th onClick={()=>handleSort("size")}>
 Size
-{sortField==="Size" && (
+{sortField==="size" && (
 sortOrder==="asc" ? " ↑" : " ↓"
 )}
 </th>
   
-<th onClick={()=>handleSort("Gramage")}>
+<th onClick={()=>handleSort("gramage")}>
 Gramage
-{sortField==="Gramage" && (
+{sortField==="gramage" && (
 sortOrder==="asc" ? " ↑" : " ↓"
 )}
 </th>
   
-<th onClick={()=>handleSort("Material")}>
+<th onClick={()=>handleSort("material")}>
 Material
-{sortField==="Material" && (
+{sortField==="material" && (
 sortOrder==="asc" ? " ↑" : " ↓"
 )}
 </th>
   
-<th onClick={()=>handleSort("Roll No")}>
+<th onClick={()=>handleSort("rollno")}>
 Roll No
-{sortField==="Roll No" && (
+{sortField==="rollno" && (
 sortOrder==="asc" ? " ↑" : " ↓"
 )}
 </th>
   
-<th onClick={()=>handleSort("Incoming")}>
+<th onClick={()=>handleSort("incoming")}>
 Incoming
-{sortField==="Incoming" && (
+{sortField==="incoming" && (
 sortOrder==="asc" ? " ↑" : " ↓"
 )}
 </th>
   
-<th onClick={()=>handleSort("Outgoing")}>
+<th onClick={()=>handleSort("outgoing")}>
 Outgoing
-{sortField==="Outgoing" && (
+{sortField==="outgoing" && (
 sortOrder==="asc" ? " ↑" : " ↓"
 )}
 </th>
   
-<th onClick={()=>handleSort("Balance")}>
+<th onClick={()=>handleSort("balance")}>
 Balance
-{sortField==="Balance" && (
+{sortField==="balance" && (
 sortOrder==="asc" ? " ↑" : " ↓"
 )}
 </th>
