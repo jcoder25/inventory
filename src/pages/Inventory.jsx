@@ -6,10 +6,15 @@ onDelete,
 onAdd,
 onEdit
 }){
-  
+
 const [search,setSearch] = useState("");
 
-const filteredInventory = inventory.filter(item => {
+const [sortField,setSortField] = useState("");
+const [sortOrder,setSortOrder] = useState("asc");
+
+const filteredInventory = [...inventory]
+
+.filter(item => {
 
 const query = search.toLowerCase();
 
@@ -20,8 +25,57 @@ String(item.size).includes(query) ||
 String(item.gramage).includes(query)
 );
 
+})
+
+.sort((a,b)=>{
+
+if(!sortField) return 0;
+
+let valA = a[sortField];
+let valB = b[sortField];
+
+if(sortField === "date"){
+valA = new Date(valA);
+valB = new Date(valB);
+}
+
+if(typeof valA === "string"){
+valA = valA.toLowerCase();
+valB = valB.toLowerCase();
+}
+
+if(valA < valB){
+return sortOrder === "asc" ? -1 : 1;
+}
+
+if(valA > valB){
+return sortOrder === "asc" ? 1 : -1;
+}
+
+return 0;
+
+});
 });
 
+
+function handleSort(field){
+
+if(sortField === field){
+
+setSortOrder(
+sortOrder === "asc"
+? "desc"
+: "asc"
+);
+
+}else{
+
+setSortField(field);
+setSortOrder("asc");
+
+}
+
+}
   
 return(
 <div className="card">
@@ -69,16 +123,67 @@ onClick={()=>setSearch("")}
 
 <thead>
 <tr>
-<th>Date</th>
-<th>Size</th>
-<th>Gramage</th>
-<th>Material</th>
-<th>Roll No</th>
-<th>Incoming</th>
-<th>Outgoing</th>
-<th>Balance</th>
+  
+<th onClick={()=>handleSort("date")}>
+Date
+{sortField==="date" && (
+sortOrder==="asc" ? " ↑" : " ↓"
+)}
+</th>
+  
+<th onClick={()=>handleSort("Size")}>
+Size
+{sortField==="Size" && (
+sortOrder==="asc" ? " ↑" : " ↓"
+)}
+</th>
+  
+<th onClick={()=>handleSort("Gramage")}>
+Gramage
+{sortField==="Gramage" && (
+sortOrder==="asc" ? " ↑" : " ↓"
+)}
+</th>
+  
+<th onClick={()=>handleSort("Material")}>
+Material
+{sortField==="Material" && (
+sortOrder==="asc" ? " ↑" : " ↓"
+)}
+</th>
+  
+<th onClick={()=>handleSort("Roll No")}>
+Roll No
+{sortField==="Roll No" && (
+sortOrder==="asc" ? " ↑" : " ↓"
+)}
+</th>
+  
+<th onClick={()=>handleSort("Incoming")}>
+Incoming
+{sortField==="Incoming" && (
+sortOrder==="asc" ? " ↑" : " ↓"
+)}
+</th>
+  
+<th onClick={()=>handleSort("Outgoing")}>
+Outgoing
+{sortField==="Outgoing" && (
+sortOrder==="asc" ? " ↑" : " ↓"
+)}
+</th>
+  
+<th onClick={()=>handleSort("Balance")}>
+Balance
+{sortField==="Balance" && (
+sortOrder==="asc" ? " ↑" : " ↓"
+)}
+</th>
+  
 <th>Remarks</th>
+  
 <th>Action</th>
+  
 </tr>
 </thead>
 
