@@ -39,9 +39,28 @@ valA = new Date(valA);
 valB = new Date(valB);
 }
 
-if(typeof valA === "string"){
-valA = valA.toLowerCase();
-valB = valB.toLowerCase();
+const numericFields = [
+"size",
+"gramage",
+"rollNo",
+"incoming",
+"outgoing",
+"balance"
+];
+
+if(sortField === "date"){
+valA = new Date(valA);
+valB = new Date(valB);
+}
+
+else if(numericFields.includes(sortField)){
+valA = Number(valA);
+valB = Number(valB);
+}
+
+else{
+valA = String(valA).toLowerCase();
+valB = String(valB).toLowerCase();
 }
 
 if(valA < valB){
@@ -55,7 +74,6 @@ return sortOrder === "asc" ? 1 : -1;
 return 0;
 
 });
-
 
 function handleSort(field){
 
