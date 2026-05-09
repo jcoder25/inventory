@@ -159,6 +159,11 @@ const { data, error } = await supabase
 .select("*")
 .order("id",{ascending:false});
 
+if(error){
+console.log(error);
+return;
+}
+
 if(data){
 
 const formatted = data.map(item=>({
