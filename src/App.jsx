@@ -21,6 +21,8 @@ const [inventory,setInventory] = useState([]);
 
 const [showInventory,setShowInventory] = useState(false);
 const [showMaterial,setShowMaterial] = useState(false);
+  
+const [editingId,setEditingId] = useState(null);
 
 const [error,setError] = useState("");
 
@@ -93,6 +95,17 @@ remarks:""
 
 setError("");
 setShowInventory(false);
+}
+
+function editInventory(item)
+{
+
+setInventoryForm(item);
+
+setEditingId(item.id);
+
+setShowInventory(true);
+
 }
 
 function saveMaterial(){
