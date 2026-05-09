@@ -40,13 +40,6 @@ Add Inventory
 <th>Balance</th>
 <th>Remarks</th>
 <th>Action</th>
-</tr><tr>
-<th>Date</th>
-<th>Material</th>
-<th>Roll</th>
-<th>Balance</th>
-<th>Remarks</th>
-<th>Action</th>
 </tr>
 </thead>
 
