@@ -15,7 +15,6 @@ import { validateInventory } from "./services/validation";
 
 export default function App(){
 
-const [editingId,setEditingId] = useState(null);
 const [materials,setMaterials] = useState([]);
 const [inventory,setInventory] = useState([]);
 
@@ -78,21 +77,8 @@ item.id === editingId
 
 }else{
 
-if(editingId){
-
-setInventory(
-inventory.map(item =>
-item.id === editingId
-? { ...payload, id: editingId }
-: item
-)
-);
-
-}else{
-
 setInventory([...inventory,payload]);
 
-}
 }
 
 setInventoryForm({
@@ -107,8 +93,11 @@ remarks:""
 });
 
 setError("");
+
 setShowInventory(false);
+
 setEditingId(null);
+
 }
 
 function editInventory(item)
