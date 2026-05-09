@@ -44,7 +44,7 @@ remarks:""
 });
 
 useEffect(()=>{
-fetchInventory();
+await fetchInventory();
 },[]);
   
 async function saveInventory(){
@@ -94,7 +94,7 @@ setError(error.message);
 return;
 }
 
-fetchInventory();
+await fetchInventory();
 
 }else{
 
@@ -118,7 +118,7 @@ if(error){
 setError(error.message);
 return;
 }
-fetchInventory();
+await fetchInventory();
 }
 
 setInventoryForm({
@@ -148,7 +148,7 @@ await supabase
 .delete()
 .eq("id",id);
 
-fetchInventory();
+await fetchInventory();
 
 }
   
