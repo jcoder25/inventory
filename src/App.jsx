@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { supabase } from "./supabase";
-import { useEffect } from "react";
 
 import Sidebar from "./components/Sidebar";
 import InventoryModal from "./components/InventoryModal";
@@ -72,15 +71,30 @@ Number(inventoryForm.outgoing)
 )
 };
 
+  
 if(editingId){
 
-setInventory(
-inventory.map(item =>
-item.id === editingId
-? { ...payload, id: editingId }
-: item
-)
-);
+const { error } = await supabase
+.from("inventory")
+.update({
+entry_date: inventoryForm.date,
+size: Number(inventoryForm.size),
+gramage: Number(inventoryForm.gramage),
+material: inventoryForm.material,
+roll_no: Number(inventoryForm.rollNo),
+incoming: Number(inventoryForm.incoming),
+outgoing: Number(inventoryForm.outgoing),
+balance: payload.balance,
+remarks: inventoryForm.remarks
+})
+.eq("id", editingId);
+
+if(error){
+setError(error.message);
+return;
+}
+
+fetchInventory();
 
 }else{
 
@@ -216,16 +230,7 @@ materials={materials}
 }
 />
 
-<Route
-path="/inventory"
-element={
-
-<Inventory
-inventory={inventory}
-onDelete={deleteInventory}
-onAdd={()=>setShowInventory(true)}
-onEdit={editInventory}
-/>
+}/>
 
 <Route
 path="/materials"
