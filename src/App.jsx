@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { supabase } from "./supabase";
 import { useEffect } from "react";
@@ -44,6 +44,10 @@ threshold:"",
 remarks:""
 });
 
+useEffect(()=>{
+fetchInventory();
+},[]);
+  
 async function saveInventory(){
 
 const validationError = validateInventory(
@@ -100,6 +104,7 @@ if(error){
 setError(error.message);
 return;
 }
+fetchInventory();
 }
 
 setInventoryForm({
@@ -121,6 +126,47 @@ setEditingId(null);
 
 }
 
+async function deleteInventory(id)
+{
+
+await supabase
+.from("inventory")
+.delete()
+.eq("id",id);
+
+fetchInventory();
+
+}
+  
+async function fetchInventory(){
+
+const { data, error } = await supabase
+.from("inventory")
+.select("*")
+.order("id",{ascending:false});
+
+if(data){
+
+const formatted = data.map(item=>({
+id:item.id,
+date:item.entry_date,
+size:item.size,
+gramage:item.gramage,
+material:item.material,
+rollNo:item.roll_no,
+incoming:item.incoming,
+outgoing:item.outgoing,
+balance:item.balance,
+remarks:item.remarks
+}));
+
+setInventory(formatted);
+
+}
+}
+
+
+  
 function editInventory(item)
 {
 
@@ -173,17 +219,12 @@ materials={materials}
 <Route
 path="/inventory"
 element={
+
 <Inventory
 inventory={inventory}
-onDelete={(id)=>
-setInventory(
-inventory.filter(i=>i.id !== id)
-)
-}
+onDelete={deleteInventory}
 onAdd={()=>setShowInventory(true)}
 onEdit={editInventory}
-/>
-}
 />
 
 <Route
