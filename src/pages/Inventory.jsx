@@ -84,7 +84,7 @@ onClick={()=>setSearch("")}
 
 <tbody>
 
-{inventory.map(item=>(
+{filteredInventory.map(item=>(
 <tr key={item.id}>
 
 <td>{item.date}</td>
