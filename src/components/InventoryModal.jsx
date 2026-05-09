@@ -44,20 +44,17 @@ value={form.gramage}
 onChange={(e)=>setForm({...form,gramage:e.target.value})}
 />
 
-<select
+<input
 className="input"
+placeholder="Material Name"
 value={form.material}
-onChange={(e)=>setForm({...form,material:e.target.value})}
->
-<option value="">Select Material</option>
-
-{materials.map(item=>(
-<option key={item.id}>
-{item.name}
-</option>
-))}
-
-</select>
+onChange={(e)=>
+setForm({
+...form,
+material:e.target.value
+})
+}
+/>
 
 <input
 className="input"
