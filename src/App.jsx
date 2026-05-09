@@ -46,7 +46,8 @@ function saveInventory(){
 
 const validationError = validateInventory(
 inventoryForm,
-inventory
+inventory,
+editingId
 );
 
 if(validationError){
