@@ -2,7 +2,7 @@
 export default function Inventory({
 inventory,
 onDelete,
-onAdd
+onAdd,
 onEdit
 }){
 
