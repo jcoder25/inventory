@@ -217,7 +217,7 @@ return(
 <Sidebar />
 
 <div className="content">
-
+  
 <Routes>
 
 <Route
@@ -230,7 +230,17 @@ materials={materials}
 }
 />
 
-}/>
+<Route
+path="/inventory"
+element={
+<Inventory
+inventory={inventory}
+onDelete={deleteInventory}
+onAdd={()=>setShowInventory(true)}
+onEdit={editInventory}
+/>
+}
+/>
 
 <Route
 path="/materials"
@@ -258,7 +268,6 @@ element={<Settings />}
 />
 
 </Routes>
-
 </div>
 
 {showInventory && (
