@@ -64,7 +64,21 @@ Number(inventoryForm.outgoing)
 )
 };
 
+if(editingId){
+
+setInventory(
+inventory.map(item =>
+item.id === editingId
+? { ...payload, id: editingId }
+: item
+)
+);
+
+}else{
+
 setInventory([...inventory,payload]);
+
+}
 
 setInventoryForm({
 date:"",
