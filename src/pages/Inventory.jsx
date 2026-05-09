@@ -55,7 +55,6 @@ return sortOrder === "asc" ? 1 : -1;
 return 0;
 
 });
-});
 
 
 function handleSort(field){
