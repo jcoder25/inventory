@@ -56,8 +56,12 @@ Add Inventory
 <tr key={item.id}>
 
 <td>{item.date}</td>
+<td>{item.size}</td>
+<td>{item.gramage}</td>
 <td>{item.material}</td>
 <td>{item.rollNo}</td>
+<td>{item.incoming}</td>
+<td>{item.outgoing}</td>
 <td>{item.balance}</td>
 <td>{item.remarks}</td>
 
