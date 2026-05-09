@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import { supabase } from "./supabase";
 
 import Sidebar from "./components/Sidebar";
 import InventoryModal from "./components/InventoryModal";
@@ -78,8 +79,26 @@ item.id === editingId
 
 }else{
 
-setInventory([...inventory,payload]);
+const { error } = await supabase
+.from("inventory")
+.insert([
+{
+entry_date: inventoryForm.date,
+size: Number(inventoryForm.size),
+gramage: Number(inventoryForm.gramage),
+material: inventoryForm.material,
+roll_no: Number(inventoryForm.rollNo),
+incoming: Number(inventoryForm.incoming),
+outgoing: Number(inventoryForm.outgoing),
+balance: payload.balance,
+remarks: inventoryForm.remarks
+}
+]);
 
+if(error){
+setError(error.message);
+return;
+}
 }
 
 setInventoryForm({
