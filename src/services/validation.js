@@ -1,6 +1,10 @@
-export function validateInventory(form, inventory){
+export function validateInventory(
+form,
+inventory,
+editingId
+){
 
-// Required fields validation
+// Required fields
 
 if(
 !form.date ||
@@ -20,19 +24,24 @@ if(!/^[A-Za-z ]*$/.test(form.material)){
 return "Material name should contain only letters";
 }
 
-// Duplicate roll number
+// Duplicate roll validation
 
 const duplicate = inventory.find(
-item => item.rollNo === form.rollNo
+item =>
+item.rollNo === form.rollNo &&
+item.id !== editingId
 );
 
 if(duplicate){
 return "Duplicate roll number not allowed";
 }
 
-// Negative balance prevention
+// Outgoing validation
 
-if(Number(form.outgoing) > Number(form.incoming)){
+if(
+Number(form.outgoing) >
+Number(form.incoming)
+){
 return "Outgoing cannot exceed incoming";
 }
 
