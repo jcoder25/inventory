@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { supabase } from "./supabase";
+import { useEffect } from "react";
 
 import Sidebar from "./components/Sidebar";
 import InventoryModal from "./components/InventoryModal";
@@ -43,7 +44,7 @@ threshold:"",
 remarks:""
 });
 
-function saveInventory(){
+async function saveInventory(){
 
 const validationError = validateInventory(
 inventoryForm,
