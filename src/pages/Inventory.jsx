@@ -58,13 +58,22 @@ Add Inventory
 <td>{item.balance}</td>
 <td>{item.remarks}</td>
 
-<td>
+<td style={{display:"flex",gap:"10px"}}>
+
+<button
+className="blue"
+onClick={()=>onEdit(item)}
+>
+Update
+</button>
+
 <button
 className="red"
 onClick={()=>onDelete(item.id)}
 >
 Delete
 </button>
+
 </td>
 
 </tr>
