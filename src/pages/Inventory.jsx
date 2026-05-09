@@ -31,6 +31,17 @@ Add Inventory
 <thead>
 <tr>
 <th>Date</th>
+<th>Size</th>
+<th>Gramage</th>
+<th>Material</th>
+<th>Roll No</th>
+<th>Incoming</th>
+<th>Outgoing</th>
+<th>Balance</th>
+<th>Remarks</th>
+<th>Action</th>
+</tr><tr>
+<th>Date</th>
 <th>Material</th>
 <th>Roll</th>
 <th>Balance</th>
