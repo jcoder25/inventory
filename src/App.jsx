@@ -72,8 +72,8 @@ Number(inventoryForm.outgoing)
 };
 
   
-if(editingId){
-
+if(editingId !== null){
+  
 const { error } = await supabase
 .from("inventory")
 .update({
