@@ -13,8 +13,11 @@ const [sortField,setSortField] = useState("");
 const [sortOrder,setSortOrder] = useState("asc");
 
 const [sizeFilter,setSizeFilter] = useState("");
+
 const [materialFilter,setMaterialFilter] = useState("");
 
+const [fromDate,setFromDate] = useState("");
+const [toDate,setToDate] = useState("");
 
 const uniqueSizes = [
 ...new Set(
@@ -27,7 +30,6 @@ const uniqueMaterials = [
 inventory.map(item => item.material)
 )
 ];
-
 
 
 function handleSort(field){
@@ -83,10 +85,22 @@ const matchesMaterial =
 !materialFilter ||
 item.material === materialFilter;
 
+const itemDate = new Date(item.date);
+
+const matchesFromDate =
+!fromDate ||
+itemDate >= new Date(fromDate);
+
+const matchesToDate =
+!toDate ||
+itemDate <= new Date(toDate);
+
 return (
 matchesSearch &&
 matchesSize &&
-matchesMaterial
+matchesMaterial &&
+matchesFromDate &&
+matchesToDate
 );
 
 })
@@ -168,7 +182,7 @@ Add Inventory
 
 <input
 type="text"
-placeholder="Search material, roll no, size..."
+placeholder="Search"
 value={search}
 onChange={(e)=>setSearch(e.target.value)}
 className="search-input"
@@ -220,6 +234,21 @@ All Materials
 ))}
 
 </select>
+
+<input
+type="date"
+value={fromDate}
+onChange={(e)=>setFromDate(e.target.value)}
+className="filter-dropdown"
+/>
+
+<input
+type="date"
+value={toDate}
+onChange={(e)=>setToDate(e.target.value)}
+className="filter-dropdown"
+/>
+
 
 </div>
   

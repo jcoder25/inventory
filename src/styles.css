@@ -1,19 +1,21 @@
-
 body{
 margin:0;
 font-family:Arial;
 background:#f3f4f6;
 }
+
 .layout{
 display:flex;
 min-height:100vh;
 }
+
 .sidebar{
 width:240px;
 background:#041b47;
 color:white;
 padding:20px;
 }
+
 .sidebar a{
 display:block;
 padding:14px;
@@ -23,30 +25,46 @@ border-radius:12px;
 color:white;
 text-decoration:none;
 }
+
 .content{
 flex:1;
 padding:24px;
 }
+
 .card{
 background:white;
 padding:24px;
 border-radius:18px;
 margin-bottom:20px;
 }
+
 .cards{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:20px;
 }
+
 table{
 width:100%;
 border-collapse:collapse;
 background:white;
 }
+
 th,td{
 padding:14px;
 border-bottom:1px solid #eee;
 }
+
+th{
+cursor:pointer;
+user-select:none;
+transition:0.2s;
+}
+
+th:hover{
+color:#f4b400;
+}
+
 button{
 padding:10px 16px;
 border:none;
@@ -54,17 +72,21 @@ border-radius:10px;
 cursor:pointer;
 font-weight:bold;
 }
+
 .primary{
 background:#f6b21a;
 }
+
 .green{
 background:#22c55e;
 color:white;
 }
+
 .red{
 background:#ef4444;
 color:white;
 }
+
 .input{
 width:100%;
 padding:12px;
@@ -72,6 +94,7 @@ border-radius:12px;
 border:1px solid #ddd;
 margin-bottom:12px;
 }
+
 .modal{
 position:fixed;
 inset:0;
@@ -81,6 +104,7 @@ justify-content:center;
 align-items:center;
 padding:20px;
 }
+
 .modal-box{
 background:white;
 padding:24px;
@@ -88,33 +112,19 @@ border-radius:20px;
 width:100%;
 max-width:800px;
 }
+
 .grid{
 display:grid;
 grid-template-columns:repeat(2,1fr);
 gap:16px;
 }
+
 .error{
 color:red;
 font-weight:bold;
 margin-bottom:12px;
 }
-@media(max-width:768px){
-.layout{
-flex-direction:column;
-}
-.sidebar{
-width:100%;
-}
-.grid{
-grid-template-columns:1fr;
-}
-.content{
-padding:14px;
-}
-table{
-display:block;
-overflow:auto;
-}
+
 .search-bar-wrapper{
 position:relative;
 width:100%;
@@ -177,14 +187,13 @@ background:white;
 box-shadow:0 0 0 2px #f4b40033;
 }
 
-th{
-cursor:pointer;
-user-select:none;
-transition:0.2s;
-}
-
-th:hover{
-color:#f4b400;
+.date-filter{
+display:flex;
+flex-direction:column;
+gap:6px;
+font-size:13px;
+font-weight:600;
+color:#555;
 }
 
 @media(max-width:768px){
@@ -210,8 +219,6 @@ display:block;
 overflow:auto;
 }
 
-}
-
 .search-bar-wrapper{
 max-width:100%;
 }
@@ -223,6 +230,11 @@ align-items:stretch;
 
 .filter-dropdown{
 width:100%;
+}
+
+.blue{
+background:#2563eb;
+color:white;
 }
 
 .search-input{
