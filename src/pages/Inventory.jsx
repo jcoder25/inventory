@@ -186,9 +186,9 @@ sortOrder==="asc" ? " ↑" : " ↓"
 )}
 </th>
   
-<th onClick={()=>handleSort("rollno")}>
+<th onClick={()=>handleSort("rollNo")}>
 Roll No
-{sortField==="rollno" && (
+{sortField==="rollNo" && (
 sortOrder==="asc" ? " ↑" : " ↓"
 )}
 </th>
@@ -251,6 +251,7 @@ onClick={()=>onDelete(item.id)}
 >
 Delete
 </button>
+
 
 </td>
 
