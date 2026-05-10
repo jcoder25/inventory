@@ -65,8 +65,8 @@ id:Date.now(),
 ...inventoryForm,
 balance: Number(
 (
-Number(inventoryForm.incoming) -
-Number(inventoryForm.outgoing)
+Number(inventoryForm.incoming || 0) -
+Number(inventoryForm.outgoing || 0)
 ).toFixed(2)
 )
 };
@@ -83,7 +83,7 @@ gramage: Number(inventoryForm.gramage),
 material: inventoryForm.material,
 roll_no: Number(inventoryForm.rollNo),
 incoming: Number(inventoryForm.incoming),
-outgoing: Number(inventoryForm.outgoing),
+outgoing: Number(inventoryForm.outgoing || 0),
 balance: payload.balance,
 remarks: inventoryForm.remarks
 })
@@ -108,7 +108,7 @@ gramage: Number(inventoryForm.gramage),
 material: inventoryForm.material,
 roll_no: Number(inventoryForm.rollNo),
 incoming: Number(inventoryForm.incoming),
-outgoing: Number(inventoryForm.outgoing),
+outgoing: Number(inventoryForm.outgoing || 0),
 balance: payload.balance,
 remarks: inventoryForm.remarks
 }
