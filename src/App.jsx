@@ -256,7 +256,7 @@ return(
 
 
 <Route
-path="/home"
+path="/"
 element={
 <Home inventory={inventory} />
 }
@@ -275,7 +275,7 @@ onAddStock={addStockWithPrefill}
 
 
 <Route
-path="/Dashboard"
+path="/dashboard"
 element={
 <Dashboard
 inventory={inventory}
