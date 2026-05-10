@@ -49,6 +49,7 @@ remarks:""
 
 useEffect(()=>{
 fetchInventory();
+fetchMaterials();
 },[]);
   
 async function saveInventory(){
@@ -189,6 +190,25 @@ setInventory(formatted);
 }
 
 
+async function fetchMaterials(){
+
+const { data, error } = await supabase
+.from("materials")
+.select("*")
+.order("id",{ascending:false});
+
+if(error){
+console.log(error);
+return;
+}
+
+if(data){
+setMaterials(data);
+}
+
+}
+
+
 function editInventory(item)
 {
 
@@ -199,7 +219,6 @@ setEditingId(item.id);
 setShowInventory(true);
 
 }
-
 
 function addStockWithPrefill(item){
 
@@ -231,15 +250,25 @@ setShowInventory(true);
 
 }
 
-function saveMaterial(){
-
-setMaterials([
-...materials,
+async function saveMaterial()
 {
-id:Date.now(),
-...materialForm
+
+const { error } = await supabase
+.from("materials")
+.insert([
+{
+name: materialForm.name,
+threshold: Number(materialForm.threshold),
+remarks: materialForm.remarks
 }
 ]);
+
+if(error){
+console.log(error);
+return;
+}
+
+await fetchMaterials();
 
 setMaterialForm({
 name:"",
@@ -248,6 +277,7 @@ remarks:""
 });
 
 setShowMaterial(false);
+
 }
 
 return(
@@ -319,11 +349,16 @@ path="/materials"
 element={
 <Materials
 materials={materials}
-onDelete={(id)=>
-setMaterials(
-materials.filter(i=>i.id !== id)
-)
-}
+onDelete={async(id)=>{
+
+await supabase
+.from("materials")
+.delete()
+.eq("id",id);
+
+fetchMaterials();
+
+}}
 onAdd={()=>setShowMaterial(true)}
 />
 }
