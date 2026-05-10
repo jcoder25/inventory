@@ -128,7 +128,7 @@ margin-bottom:12px;
 .search-bar-wrapper{
 position:relative;
 width:100%;
-max-width:420px;
+max-width:220px;
 }
 
 .search-input{
@@ -169,6 +169,7 @@ gap:12px;
 align-items:center;
 margin-bottom:20px;
 flex-wrap:wrap;
+width: 100%;
 }
 
 .filter-dropdown{
@@ -180,6 +181,7 @@ font-size:14px;
 outline:none;
 min-width:140px;
 cursor:pointer;
+flex:0.8;
 }
 
 .filter-dropdown:focus{
