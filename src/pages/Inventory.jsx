@@ -12,6 +12,23 @@ const [search,setSearch] = useState("");
 const [sortField,setSortField] = useState("");
 const [sortOrder,setSortOrder] = useState("asc");
 
+const [sizeFilter,setSizeFilter] = useState("");
+const [materialFilter,setMaterialFilter] = useState("");
+
+
+const uniqueSizes = [
+...new Set(
+inventory.map(item => item.size)
+)
+];
+
+const uniqueMaterials = [
+...new Set(
+inventory.map(item => item.material)
+)
+];
+
+
 
 function handleSort(field){
 
@@ -32,11 +49,12 @@ setSortOrder("asc");
 
 const filteredInventory = [...inventory]
 
+
 .filter(item => {
 
 const query = search.toLowerCase();
 
-return (
+const matchesSearch =
 
 String(item.material || "")
 .toLowerCase()
@@ -55,8 +73,20 @@ String(item.size || "")
 ||
 
 String(item.gramage || "")
-.includes(query)
+.includes(query);
 
+const matchesSize =
+!sizeFilter ||
+String(item.size) === String(sizeFilter);
+
+const matchesMaterial =
+!materialFilter ||
+item.material === materialFilter;
+
+return (
+matchesSearch &&
+matchesSize &&
+matchesMaterial
 );
 
 })
@@ -132,6 +162,8 @@ Add Inventory
 
 </div>
 
+<div className="top-filters">
+
 <div className="search-bar-wrapper">
 
 <input
@@ -150,6 +182,44 @@ onClick={()=>setSearch("")}
 ×
 </button>
 )}
+
+</div>
+
+<select
+value={sizeFilter}
+onChange={(e)=>setSizeFilter(e.target.value)}
+className="filter-dropdown"
+>
+
+<option value="">
+All Sizes
+</option>
+
+{uniqueSizes.map(size=>(
+<option key={size} value={size}>
+{size}
+</option>
+))}
+
+</select>
+
+<select
+value={materialFilter}
+onChange={(e)=>setMaterialFilter(e.target.value)}
+className="filter-dropdown"
+>
+
+<option value="">
+All Materials
+</option>
+
+{uniqueMaterials.map(material=>(
+<option key={material} value={material}>
+{material}
+</option>
+))}
+
+</select>
 
 </div>
   
