@@ -53,9 +53,7 @@ Size {size} Summary
 
 <button
 className="primary"
-onClick={()=>onAddStock({
-size:size
-})}
+onClick={()=>onAddStock(rows[0]?.latest)}
 >
 Add Stock
 </button>
