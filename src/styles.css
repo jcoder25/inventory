@@ -196,6 +196,48 @@ width:100%;
 color:#555;
 }
 
+
+.mobile-topbar{
+display:none;
+}
+
+.hamburger{
+background:none;
+border:none;
+color:white;
+font-size:28px;
+cursor:pointer;
+}
+
+@media(max-width:768px){
+
+.mobile-topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#041b47;
+color:white;
+padding:18px 20px;
+}
+
+.mobile-topbar h1{
+margin:0;
+font-size:26px;
+}
+
+.sidebar{
+display:none;
+width:100%;
+padding:20px;
+box-sizing:border-box;
+}
+
+.show-sidebar{
+display:block;
+}
+
+}
+
 .date-filter label{
 font-size:13px;
 font-weight:600;
@@ -207,10 +249,6 @@ padding-left:4px;
 
 .layout{
 flex-direction:column;
-}
-
-.sidebar{
-width:100%;
 }
 
 .grid{
