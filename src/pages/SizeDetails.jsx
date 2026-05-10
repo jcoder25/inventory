@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function SizeDetails({
 inventory,
@@ -88,8 +88,20 @@ Add Stock
 
 <td>{item.size}</td>
 
-<td>{item.gramage}</td>
+<td>
 
+<Link
+to={`/size/${item.size}/gramage/${item.gramage}`}
+style={{
+textDecoration:"none",
+fontWeight:"bold",
+color:"#041b47"
+}}
+>
+{item.gramage}
+</Link>
+
+</td>
 <td>{item.balance}</td>
 
 <td>

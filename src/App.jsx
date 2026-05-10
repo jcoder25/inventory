@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { supabase } from "./supabase";
+import GramageDetails from "./pages/GramageDetails";
 
 import Sidebar from "./components/Sidebar";
 import InventoryModal from "./components/InventoryModal";
@@ -198,6 +199,8 @@ setEditingId(item.id);
 setShowInventory(true);
 
 }
+
+
 function addStockWithPrefill(item){
 
 if(!item) return;
@@ -263,6 +266,19 @@ element={
 <Home inventory={inventory} />
 }
 />
+
+<Route
+path="/size/:size/gramage/:gramage"
+element={
+<GramageDetails
+inventory={inventory}
+onEdit={editInventory}
+onDelete={deleteInventory}
+onAddStock={addStockWithPrefill}
+/>
+}
+/>
+
 
 <Route
 path="/size/:size"
