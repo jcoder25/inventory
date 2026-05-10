@@ -5,6 +5,10 @@ export default function Sidebar(){
 
 const [open,setOpen] = useState(false);
 
+function closeMenu(){
+setOpen(false);
+}
+
 return(
 
 <>
@@ -24,15 +28,29 @@ onClick={()=>setOpen(!open)}
 
 <div className={`sidebar ${open ? "show-sidebar" : ""}`}>
 
-<Link to="/">Home</Link>
+<Link to="/" onClick={closeMenu}>
+Home
+</Link>
 
-<Link to="/inventory">Inventory</Link>
+<Link to="/dashboard" onClick={closeMenu}>
+Dashboard
+</Link>
 
-<Link to="/materials">Materials</Link>
+<Link to="/inventory" onClick={closeMenu}>
+Inventory
+</Link>
 
-<Link to="/activity">Activity</Link>
+<Link to="/materials" onClick={closeMenu}>
+Materials
+</Link>
 
-<Link to="/settings">Settings</Link>
+<Link to="/activity" onClick={closeMenu}>
+Activity
+</Link>
+
+<Link to="/settings" onClick={closeMenu}>
+Settings
+</Link>
 
 </div>
 
