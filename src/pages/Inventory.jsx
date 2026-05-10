@@ -235,12 +235,22 @@ All Materials
 
 </select>
 
+<div className="date-filter">
+
+<label>From Date</label>
+
 <input
 type="date"
 value={fromDate}
 onChange={(e)=>setFromDate(e.target.value)}
 className="filter-dropdown"
 />
+
+</div>
+
+<div className="date-filter">
+
+<label>To Date</label>
 
 <input
 type="date"
@@ -249,6 +259,7 @@ onChange={(e)=>setToDate(e.target.value)}
 className="filter-dropdown"
 />
 
+</div>
 
 </div>
   

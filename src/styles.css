@@ -192,7 +192,15 @@ flex-direction:column;
 gap:6px;
 font-size:13px;
 font-weight:600;
+width:100%;
 color:#555;
+}
+
+.date-filter label{
+font-size:13px;
+font-weight:600;
+color:#555;
+padding-left:4px;
 }
 
 @media(max-width:768px){
