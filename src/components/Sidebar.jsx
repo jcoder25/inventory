@@ -28,7 +28,7 @@ onClick={()=>setOpen(!open)}
 
 <div className={`sidebar ${open ? "show-sidebar" : ""}`}>
 
-<Link to="/home" onClick={closeMenu}>
+<Link to="/" onClick={closeMenu}>
 Home
 </Link>
 

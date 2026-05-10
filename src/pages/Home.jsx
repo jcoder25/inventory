@@ -16,6 +16,22 @@ groupedSizes[size] += Number(item.balance || 0);
 
 });
 
+
+if(inventory.length === 0){
+
+return(
+
+<div className="card">
+
+<h2>No Inventory Data Found</h2>
+
+</div>
+
+)
+
+}
+
+
 const sizeData = Object.entries(groupedSizes);
 
 return(
