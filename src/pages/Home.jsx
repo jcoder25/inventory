@@ -1,15 +1,7 @@
-import { Link } from "react-router-dom";
-
-export default function Home({ inventory }){
+export default function Home(){
 
 return(
-
-<div className="card">
-
 <h1>HOME WORKING</h1>
-
-</div>
-
 )
 
 }

@@ -11,6 +11,7 @@ import Inventory from "./pages/Inventory";
 import Materials from "./pages/Materials";
 import Activity from "./pages/Activity";
 import Settings from "./pages/Settings";
+
 import Home from "./pages/Home";
 import SizeDetails from "./pages/SizeDetails";
 
@@ -73,7 +74,7 @@ Number(inventoryForm.outgoing || 0)
 )
 };
 
-  
+
 if(editingId !== null){
   
 const { error } = await supabase
