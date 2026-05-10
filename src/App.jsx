@@ -198,8 +198,9 @@ setEditingId(item.id);
 setShowInventory(true);
 
 }
-
 function addStockWithPrefill(item){
+
+if(!item) return;
 
 setInventoryForm({
 
