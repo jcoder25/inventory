@@ -11,6 +11,8 @@ import Inventory from "./pages/Inventory";
 import Materials from "./pages/Materials";
 import Activity from "./pages/Activity";
 import Settings from "./pages/Settings";
+import Home from "./pages/Home";
+import SizeDetails from "./pages/SizeDetails";
 
 import { validateInventory } from "./services/validation";
 
@@ -185,13 +187,40 @@ setInventory(formatted);
 }
 
 
-  
 function editInventory(item)
 {
 
 setInventoryForm(item);
 
 setEditingId(item.id);
+
+setShowInventory(true);
+
+}
+
+function addStockWithPrefill(item){
+
+setInventoryForm({
+
+date:new Date().toISOString().split("T")[0],
+
+size:item.size || "",
+
+gramage:item.gramage || "",
+
+material:item.material || "",
+
+rollNo:"",
+
+incoming:"",
+
+outgoing:"",
+
+remarks:""
+
+});
+
+setEditingId(null);
 
 setShowInventory(true);
 
@@ -225,8 +254,28 @@ return(
   
 <Routes>
 
+
 <Route
-path="/"
+path="/home"
+element={
+<Home inventory={inventory} />
+}
+/>
+
+<Route
+path="/size/:size"
+element={
+<SizeDetails
+inventory={inventory}
+onEdit={editInventory}
+onAddStock={addStockWithPrefill}
+/>
+}
+/>
+
+
+<Route
+path="/Dashboard"
 element={
 <Dashboard
 inventory={inventory}
