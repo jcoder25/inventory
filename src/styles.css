@@ -126,11 +126,10 @@ margin-bottom:12px;
 }
 .search-bar-wrapper{
 position:relative;
-width:150px;
 flex:none;
 }
 .search-input{
-width:100%;
+width:160px;
 padding:14px 45px 14px 16px;
 border:none;
 border-radius:14px;
@@ -167,7 +166,6 @@ gap:12px;
 align-items:center;
 margin-bottom:20px;
 flex-wrap:wrap;
-width: 100%;
 }
 
 .filter-dropdown{
