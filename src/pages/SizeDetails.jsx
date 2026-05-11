@@ -32,7 +32,7 @@ latest:item
 
 }
 
-grouped[key].balance += Number(item.balance);
+grouped[key].balance += Number(item.balance || 0);
 
 });
 
@@ -56,7 +56,6 @@ setSortOrder("asc");
 }
 
 }
-
 
 return(
 
@@ -87,6 +86,7 @@ Add Stock
 <thead>
 
 <tr>
+
 <th onClick={()=>handleSort("date")}>
 Date
 {sortField==="date" &&
@@ -98,7 +98,6 @@ Size
 {sortField==="size" &&
 (sortOrder==="asc" ? " ↑" : " ↓")}
 </th>
-
 
 <th onClick={()=>handleSort("gramage")}>
 Gramage
@@ -130,7 +129,9 @@ Total Balance
 (sortOrder==="asc" ? " ↑" : " ↓")}
 </th>
 
-<th>Action</th>
+<th>
+Action
+</th>
 
 </tr>
 
@@ -144,12 +145,30 @@ Total Balance
 
 if(!sortField) return 0;
 
-let valA = a[sortField];
-let valB = b[sortField];
+let valA;
+let valB;
+
+if(
+sortField === "material" ||
+sortField === "incoming" ||
+sortField === "outgoing"
+){
+
+valA = a.latest[sortField];
+valB = b.latest[sortField];
+
+}else{
+
+valA = a[sortField];
+valB = b[sortField];
+
+}
 
 const numericFields = [
 "size",
 "gramage",
+"incoming",
+"outgoing",
 "balance"
 ];
 
@@ -187,7 +206,7 @@ return 0;
 })
 
 .map((item,index)=>(
-    
+
 <tr key={index}>
 
 <td>{item.date}</td>
@@ -219,22 +238,6 @@ color:"#041b47"
 
 <td>
 
-<Link
-to={`/size/${item.size}/gramage/${item.gramage}`}
-style={{
-textDecoration:"none",
-fontWeight:"bold",
-color:"#041b47"
-}}
->
-{item.gramage}
-</Link>
-
-</td>
-<td>{item.balance}</td>
-
-<td>
-
 <button
 className="blue"
 onClick={()=>onEdit(item.latest)}
@@ -257,5 +260,3 @@ Modify
 )
 
 }
-
-
