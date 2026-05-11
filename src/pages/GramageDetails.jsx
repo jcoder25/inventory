@@ -48,7 +48,7 @@ Add Stock
 
 <tr>
 
-<th>Sr No</th>
+<th>Date</th>
 <th>Size</th>
 <th>Gramage</th>
 <th>Material</th>
@@ -67,7 +67,7 @@ Add Stock
 
 <tr key={item.id}>
 
-<td>{index + 1}</td>
+<td>{item.date}</td>
 <td>{item.size}</td>
 <td>{item.gramage}</td>
 <td>{item.material}</td>

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function Inventory({
 inventory,
-onDelete,
+onDelete,   
 onAdd,
 onEdit
 }){
