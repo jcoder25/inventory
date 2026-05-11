@@ -90,6 +90,13 @@ Gramage
 (sortOrder==="asc" ? " ↑" : " ↓")}
 </th>
 
+
+<th onClick={()=>handleSort("gramage")}>
+Roll No
+{sortField==="gramage" &&
+(sortOrder==="asc" ? " ↑" : " ↓")}
+</th>
+
 <th onClick={()=>handleSort("material")}>
 Material
 {sortField==="material" &&
