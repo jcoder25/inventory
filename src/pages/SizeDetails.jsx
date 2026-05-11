@@ -208,6 +208,29 @@ color:"#041b47"
 </Link>
 
 </td>
+
+<td>{item.latest.material}</td>
+
+<td>{item.latest.incoming}</td>
+
+<td>{item.latest.outgoing}</td>
+
+<td>{item.balance}</td>
+
+<td>
+
+<Link
+to={`/size/${item.size}/gramage/${item.gramage}`}
+style={{
+textDecoration:"none",
+fontWeight:"bold",
+color:"#041b47"
+}}
+>
+{item.gramage}
+</Link>
+
+</td>
 <td>{item.balance}</td>
 
 <td>
