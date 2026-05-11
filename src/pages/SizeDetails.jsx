@@ -1,4 +1,5 @@
 import { Link, useParams } from "react-router-dom";
+import { useState } from "react";
 
 export default function SizeDetails({
 inventory,
@@ -7,6 +8,9 @@ onAddStock
 }){
 
 const { size } = useParams();
+
+const [sortField,setSortField] = useState("");
+const [sortOrder,setSortOrder] = useState("asc");
 
 const grouped = {};
 
@@ -33,6 +37,26 @@ grouped[key].balance += Number(item.balance);
 });
 
 const rows = Object.values(grouped);
+
+function handleSort(field){
+
+if(sortField === field){
+
+setSortOrder(
+sortOrder === "asc"
+? "desc"
+: "asc"
+);
+
+}else{
+
+setSortField(field);
+setSortOrder("asc");
+
+}
+
+}
+
 
 return(
 
@@ -63,14 +87,48 @@ Add Stock
 <thead>
 
 <tr>
+<th onClick={()=>handleSort("date")}>
+Date
+{sortField==="date" &&
+(sortOrder==="asc" ? " ↑" : " ↓")}
+</th>
 
-<th>Date</th>
+<th onClick={()=>handleSort("size")}>
+Size
+{sortField==="size" &&
+(sortOrder==="asc" ? " ↑" : " ↓")}
+</th>
 
-<th>Size</th>
 
-<th>Gramage</th>
+<th onClick={()=>handleSort("gramage")}>
+Gramage
+{sortField==="gramage" &&
+(sortOrder==="asc" ? " ↑" : " ↓")}
+</th>
 
-<th>Total Balance</th>
+<th onClick={()=>handleSort("material")}>
+Material
+{sortField==="material" &&
+(sortOrder==="asc" ? " ↑" : " ↓")}
+</th>
+
+<th onClick={()=>handleSort("incoming")}>
+Incoming
+{sortField==="incoming" &&
+(sortOrder==="asc" ? " ↑" : " ↓")}
+</th>
+
+<th onClick={()=>handleSort("outgoing")}>
+Outgoing
+{sortField==="outgoing" &&
+(sortOrder==="asc" ? " ↑" : " ↓")}
+</th>
+
+<th onClick={()=>handleSort("balance")}>
+Total Balance
+{sortField==="balance" &&
+(sortOrder==="asc" ? " ↑" : " ↓")}
+</th>
 
 <th>Action</th>
 
@@ -80,8 +138,56 @@ Add Stock
 
 <tbody>
 
-{rows.map((item,index)=>(
+{[...rows]
 
+.sort((a,b)=>{
+
+if(!sortField) return 0;
+
+let valA = a[sortField];
+let valB = b[sortField];
+
+const numericFields = [
+"size",
+"gramage",
+"balance"
+];
+
+if(sortField === "date"){
+
+valA = new Date(valA);
+valB = new Date(valB);
+
+}
+
+else if(numericFields.includes(sortField)){
+
+valA = Number(valA);
+valB = Number(valB);
+
+}
+
+else{
+
+valA = String(valA).toLowerCase();
+valB = String(valB).toLowerCase();
+
+}
+
+if(valA < valB){
+return sortOrder === "asc" ? -1 : 1;
+}
+
+if(valA > valB){
+return sortOrder === "asc" ? 1 : -1;
+}
+
+return 0;
+
+})
+
+.map((item,index)=>(
+    
 <tr key={index}>
 
 <td>{item.date}</td>
@@ -128,3 +234,5 @@ Modify
 )
 
 }
+
+
