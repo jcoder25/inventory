@@ -154,7 +154,24 @@ return 0;
 
 });
 
-  
+function formatDate(dateString){
+
+if(!dateString) return "";
+
+const date = new Date(dateString);
+
+const day = String(date.getDate())
+.padStart(2,"0");
+
+const month = String(date.getMonth() + 1)
+.padStart(2,"0");
+
+const year = date.getFullYear();
+
+return `${day}-${month}-${year}`;
+
+}
+
 return(
 <div className="card">
 
@@ -336,7 +353,7 @@ sortOrder==="asc" ? " ↑" : " ↓"
 {filteredInventory.map(item=>(
 <tr key={item.id}>
 
-<td>{item.date}</td>
+{formatDate(item.date)}
 <td>{item.size}</td>
 <td>{item.gramage}</td>
 <td>{item.material}</td>

@@ -57,6 +57,25 @@ setSortOrder("asc");
 
 }
 
+function formatDate(dateString){
+
+if(!dateString) return "";
+
+const date = new Date(dateString);
+
+const day = String(date.getDate())
+.padStart(2,"0");
+
+const month = String(date.getMonth() + 1)
+.padStart(2,"0");
+
+const year = date.getFullYear();
+
+return `${day}-${month}-${year}`;
+
+}
+
+
 return(
 
 <div className="card">
@@ -209,7 +228,7 @@ return 0;
 
 <tr key={index}>
 
-<td>{item.date}</td>
+<td>{formatDate(item.date)}</td>
 
 <td>{item.size}</td>
 
