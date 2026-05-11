@@ -19,9 +19,9 @@ const key = item.gramage;
 if(!grouped[key]){
 
 grouped[key] = {
+date:item.date,
 size:item.size,
 gramage:item.gramage,
-material:item.material,
 balance:0,
 latest:item
 };
