@@ -92,24 +92,14 @@ onClick={handleForgotPassword}
 Forgot Password?
 </p>
 
-
-
-
 </div>
 
 
 </div>
 
-
-
-
 </div>
-
-
-
 
 )
-
 
 async function handleForgotPassword(){
 
@@ -121,7 +111,7 @@ return;
 const { error } = await supabase.auth.resetPasswordForEmail(
 email,
 {
-redirectTo:"https://YOUR-VERCEL-URL.vercel.app/reset-password"
+redirectTo:"https://inventory-6eid.vercel.app/reset-password"
 }
 );
 
