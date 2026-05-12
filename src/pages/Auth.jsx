@@ -69,10 +69,11 @@ onChange={(e)=>setPassword(e.target.value)}
 className="input"
 />
 
+<div className="auth-buttons">
+
 <button
 className="primary"
 onClick={handleLogin}
-disabled={loading}
 >
 Login
 </button>
@@ -80,16 +81,55 @@ Login
 <button
 className="green"
 onClick={handleSignup}
-disabled={loading}
-style={{marginTop:"10px"}}
 >
 Signup
 </button>
 
-</div>
+<p
+className="forgot-password"
+onClick={handleForgotPassword}
+>
+Forgot Password?
+</p>
+
+
+
 
 </div>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
 
 )
 
+
+async function handleForgotPassword(){
+
+if(!email){
+alert("Please enter your email first");
+return;
+}
+
+const { error } = await supabase.auth.resetPasswordForEmail(
+email,
+{
+redirectTo:"https://YOUR-VERCEL-URL.vercel.app/reset-password"
+}
+);
+
+if(error){
+alert(error.message);
+}else{
+alert("Password reset email sent");
+}
+
+}
 }

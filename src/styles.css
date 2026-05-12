@@ -383,4 +383,25 @@ margin-top:12px;
 cursor:pointer;
 }
 
+
+.auth-buttons{
+display:flex;
+gap:14px;
+margin-top:10px;
+flex-wrap:wrap;
+}
+
+
+.forgot-password{
+margin-top:14px;
+color:#041b47;
+font-weight:bold;
+cursor:pointer;
+width:fit-content;
+}
+
+.forgot-password:hover{
+text-decoration:underline;
+}
+
 }

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { supabase } from "./supabase";
 import GramageDetails from "./pages/GramageDetails";
+import ResetPassword from "./pages/ResetPassword";
 
 import Sidebar from "./components/Sidebar";
 import InventoryModal from "./components/InventoryModal";
@@ -364,6 +365,11 @@ return(
 <div className="content">
   
 <Routes>
+
+<Route
+path="/reset-password"
+element={<ResetPassword />}
+/>
 
 
 <Route
