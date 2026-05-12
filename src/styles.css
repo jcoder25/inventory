@@ -371,6 +371,16 @@ max-width:400px;
 box-shadow:0 10px 30px rgba(0,0,0,0.08);
 }
 
-
+.sidebar-logout{
+width:100%;
+padding:14px;
+border:none;
+border-radius:12px;
+background:#ef4444;
+color:white;
+font-weight:bold;
+margin-top:12px;
+cursor:pointer;
+}
 
 }

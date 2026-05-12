@@ -18,10 +18,15 @@ import SizeDetails from "./pages/SizeDetails";
 
 import { validateInventory } from "./services/validation";
 
+import Auth from "./pages/Auth";
+
 export default function App(){
 
 const [materials,setMaterials] = useState([]);
 const [inventory,setInventory] = useState([]);
+
+const[session,setSession] = useState(null);
+const[loading,setLoading] = useState(true);
 
 const [showInventory,setShowInventory] = useState(false);
 const [showMaterial,setShowMaterial] = useState(false);
@@ -47,10 +52,43 @@ threshold:"",
 remarks:""
 });
 
+
 useEffect(()=>{
+
+supabase.auth.getSession()
+.then(({ data:{ session } })=>{
+
+setSession(session);
+
+if(session){
 fetchInventory();
 fetchMaterials();
+}
+
+setLoading(false);
+
+});
+
+const {
+data:{ subscription }
+} = supabase.auth.onAuthStateChange(
+(_,session)=>{
+
+setSession(session);
+
+if(session){
+fetchInventory();
+fetchMaterials();
+}
+
+}
+);
+
+return ()=>subscription.unsubscribe();
+
 },[]);
+
+
   
 async function saveInventory(){
 
@@ -294,6 +332,15 @@ remarks:""
 setShowMaterial(false);
 
 }
+
+if(loading){
+return <h2>Loading...</h2>;
+}
+
+if(!session){
+return <Auth />;
+}
+
 
 return(
 <div className="layout">

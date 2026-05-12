@@ -1,9 +1,17 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { supabase } from "../supabase";
 
 export default function Sidebar(){
 
 const [open,setOpen] = useState(false);
+
+async function handleLogout()
+{
+    await supabase.auth.signOut();
+    window.location.reload();
+}
+
 
 function closeMenu(){
 setOpen(false);
@@ -51,6 +59,10 @@ Activity
 <Link to="/settings" onClick={closeMenu}>
 Settings
 </Link>
+
+<button onClick = {handleLogout}
+className="sidebar-logout">Logout
+</button>
 
 </div>
 
