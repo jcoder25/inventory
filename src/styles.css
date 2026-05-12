@@ -351,4 +351,26 @@ height:350px;
 
 }
 
+
+
+.auth-container{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#f3f4f6;
+padding:20px;
+}
+
+.auth-box{
+background:white;
+padding:30px;
+border-radius:20px;
+width:100%;
+max-width:400px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+
+
 }
