@@ -51,7 +51,7 @@ return(
 
 <div className="auth-box">
 
-<h2>FactoryStock Login</h2>
+<h2>Stockonomy</h2>
 
 <input
 type="email"
