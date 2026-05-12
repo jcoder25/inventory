@@ -1,4 +1,3 @@
-
 export default function Materials({
 materials,
 onDelete,

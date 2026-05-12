@@ -245,9 +245,16 @@ setInventory(formatted);
 
 async function fetchMaterials(){
 
+const {
+data:{ user }
+} = await supabase.auth.getUser();
+
+if(!user) return;
+
 const { data, error } = await supabase
 .from("materials")
 .select("*")
+.eq("user_id",user.id)
 .order("id",{ascending:false});
 
 if(error){
@@ -303,16 +310,23 @@ setShowInventory(true);
 
 }
 
-async function saveMaterial()
-{
+async function saveMaterial(){
+
+const {
+data:{ user }
+} = await supabase.auth.getUser();
 
 const { error } = await supabase
 .from("materials")
 .insert([
 {
 name: materialForm.name,
+
 threshold: Number(materialForm.threshold),
-remarks: materialForm.remarks
+
+remarks: materialForm.remarks,
+
+user_id:user.id
 }
 ]);
 
