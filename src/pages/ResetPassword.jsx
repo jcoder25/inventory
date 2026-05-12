@@ -1,10 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "../supabase";
 
 export default function ResetPassword(){
 
 const [password,setPassword] = useState("");
 const [loading,setLoading] = useState(false);
+const [ready,setReady] = useState(false);
+
+useEffect(()=>{
+
+supabase.auth.getSession()
+.then(({ data })=>{
+
+if(data.session){
+setReady(true);
+}else{
+alert("Invalid or expired reset link");
+window.location.href = "/";
+}
+
+});
+
+},[]);
 
 async function handleReset(){
 
@@ -23,11 +40,26 @@ password: password
 setLoading(false);
 
 if(error){
+
 alert(error.message);
+
 }else{
+
 alert("Password updated successfully");
+
 window.location.href = "/";
+
 }
+
+}
+
+if(!ready){
+
+return(
+<div style={{padding:"40px"}}>
+Loading...
+</div>
+);
 
 }
 
@@ -59,6 +91,7 @@ marginTop:"20px"
 
 <button
 onClick={handleReset}
+disabled={loading}
 style={{
 marginTop:"20px",
 padding:"12px 20px",
