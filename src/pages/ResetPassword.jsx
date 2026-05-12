@@ -9,17 +9,54 @@ const [ready,setReady] = useState(false);
 
 useEffect(()=>{
 
-supabase.auth.getSession()
-.then(({ data })=>{
+async function setupSession(){
 
-if(data.session){
+const hash = window.location.hash;
+
+if(hash){
+
+const params = new URLSearchParams(
+hash.substring(1)
+);
+
+const access_token =
+params.get("access_token");
+
+const refresh_token =
+params.get("refresh_token");
+
+if(access_token && refresh_token){
+
+await supabase.auth.setSession({
+access_token,
+refresh_token
+});
+
 setReady(true);
-}else{
-alert("Invalid or expired reset link");
-window.location.href = "/";
+
+return;
+
 }
 
-});
+}
+
+const { data } =
+await supabase.auth.getSession();
+
+if(data.session){
+
+setReady(true);
+
+}else{
+
+alert("Invalid or expired reset link");
+window.location.href = "/";
+
+}
+
+}
+
+setupSession();
 
 },[]);
 
@@ -34,7 +71,7 @@ setLoading(true);
 
 const { error } =
 await supabase.auth.updateUser({
-password: password
+password
 });
 
 setLoading(false);
@@ -57,7 +94,7 @@ if(!ready){
 
 return(
 <div style={{padding:"40px"}}>
-Loading...
+<h1>Loading...</h1>
 </div>
 );
 
@@ -81,7 +118,9 @@ borderRadius:"12px"
 type="password"
 placeholder="Enter new password"
 value={password}
-onChange={(e)=>setPassword(e.target.value)}
+onChange={(e)=>
+setPassword(e.target.value)
+}
 style={{
 width:"100%",
 padding:"12px",
@@ -103,7 +142,9 @@ cursor:"pointer"
 }}
 >
 
-{loading ? "Updating..." : "Update Password"}
+{loading
+? "Updating..."
+: "Update Password"}
 
 </button>
 
