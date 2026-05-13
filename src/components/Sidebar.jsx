@@ -23,7 +23,7 @@ return(
 
 <div className="mobile-topbar">
 
-<h1>FactoryStock</h1>
+<h1>Stockonomy</h1>
 
 <button
 className="hamburger"
